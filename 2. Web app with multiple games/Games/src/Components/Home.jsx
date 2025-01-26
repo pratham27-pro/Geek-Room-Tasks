@@ -3,9 +3,11 @@ import { FiHome, FiAward, FiSettings } from "react-icons/fi";
 import { BsFillGridFill, BsMoonFill, BsSunFill } from "react-icons/bs";
 import { GiCardRandom, GiPerspectiveDiceSixFacesRandom, GiRock, GiPaper, GiScissors } from "react-icons/gi";
 import { FaBrain } from "react-icons/fa";
+import { useNavigate } from "react-router-dom";
 
 const GameDashboard = () => {
   const [darkMode, setDarkMode] = useState(false);
+  const navigate = useNavigate();
 
   const games = [
     {
@@ -13,40 +15,46 @@ const GameDashboard = () => {
       title: "Tic Tac Toe",
       description: "Classic X's and O's game. Get three in a row to win!",
       image: "https://images.unsplash.com/photo-1611996575749-79a3a250f948",
-      icon: BsFillGridFill
+      icon: BsFillGridFill,
+      address: "tictactoe"
     },
     {
       id: 2,
       title: "Hangman",
       description: "Guess the word one letter at a time. Save the stickman!",
       image: "https://images.unsplash.com/photo-1553481187-be93c21490a9",
-      icon: GiPerspectiveDiceSixFacesRandom
+      icon: GiPerspectiveDiceSixFacesRandom,
+      address: "hangman"
     },
     {
       id: 3,
       title: "Memory Cards",
       description: "Match pairs of cards to test your memory skills.",
       image: "https://images.unsplash.com/photo-1558478551-1a378f63328e",
-      icon: GiCardRandom
+      icon: GiCardRandom,
+      address: "memory"
     },
     {
       id: 4,
       title: "Rock Paper Scissors",
       description: "Challenge the computer in this classic hand game.",
       image: "https://images.unsplash.com/photo-1612404730960-5c71577fca11",
-      icon: GiRock
+      icon: GiRock,
+      address: "jankenrock"
     },
     {
       id: 5,
       title: "Quiz Game",
       description: "Test your knowledge across various categories.",
       image: "https://images.unsplash.com/photo-1606326608606-aa0b62935f2b",
-      icon: FaBrain
+      icon: FaBrain,
+      address: "quiz"
     }
   ];
 
-  const handleGameStart = (gameTitle) => {
-    alert("Starting " + gameTitle);
+  const handleGameStart = (gameName) => {
+    navigate(`/${gameName}`);
+    //alert("Starting " + gameName);
   };
 
   return (
@@ -104,7 +112,7 @@ const GameDashboard = () => {
                 </p>
                 <button
                   className="w-full bg-blue-600 text-white py-2 px-4 rounded-md hover:bg-blue-700 transition-colors"
-                  onClick={() => handleGameStart(game.title)}
+                  onClick={() => handleGameStart(game.address)}
                 >
                   Play Now
                 </button>
